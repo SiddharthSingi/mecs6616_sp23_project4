@@ -64,7 +64,7 @@ def test(arm, dynamics, goal, renderer, controller, gui, args, limit):
         pos_ee = arm.dynamics.compute_fk(new_state)
         dist = np.linalg.norm(pos_ee - goal)
         vel_ee = np.linalg.norm(arm.dynamics.compute_vel_ee(state))
-        if dist < limit and vel_ee < 0.4:
+        if dist < limit and vel_ee < 0.3:
             return 1
     return 0
 
@@ -147,7 +147,8 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
     GOALS = {
         1 : [get_goal(1, 0.4), get_goal(1, -0.75)],
         2 : [get_goal(1.75, 0.4), get_goal(1.75, -0.75)],
-        3 : [get_goal(2.7, 0.5), get_goal(2.5, -0.7)]
+        3 : [get_goal(2.7, -0.5), get_goal(2.3, -0.7), get_goal(1.4, -0.5), get_goal(1.5, -0.6), get_goal(2.0, -0.25), get_goal(2.1, 4.1),\
+             get_goal(1.8, 5.7), get_goal(1.9, -1.0), get_goal(1.8, -0.8), get_goal(1.5, 7.1)]
     }
 
     renderer = None
@@ -186,21 +187,17 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
         for i, goal in enumerate(GOALS[num_links]):
             print("Test ", i+1)
             try:
-                result = test(arm, dynamics, goal, renderer, controller, gui, args, limit=0.8)
+                result = test(arm, dynamics, goal, renderer, controller, gui, args, limit=0.5)
             except Exception as e:
                 print(e)
                 continue
             if result:
                 print("success!")
-                if i == 0:
-                    print('score:', '1.5/1.5')
-                    score += 1.5
-                else:
-                    print('score:', '1.0/1.0')
-                    score += 1.0
+                print('score:', '0.75/0.75')
+                score += 0.75
             else:
                 print("fail")
-                print('score:', '0/1.5')
+                print('score:', '0/0.75')
         print("       ")
     print("-------------------------")
     print("Part 2 SCORE: ", f"{score}/7.5")
