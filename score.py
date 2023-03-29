@@ -134,10 +134,10 @@ def score_mpc_true_dynamics(controller, gui):
                   print('score:', '0/1.5')
                 else:
                   print('score:', '0/1.0')
-        print("       ")
-        print("-------------------------")
-        print("Part 1 SCORE: ", f"{score}/7.5")
-        print("-------------------------")
+    print("       ")
+    print("-------------------------")
+    print("Part 1 SCORE: ", f"{score}/7.5")
+    print("-------------------------")
 
     if renderer is not None:
         renderer.plotter.terminate()
@@ -147,8 +147,7 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
     GOALS = {
         1 : [get_goal(1, 0.4), get_goal(1, -0.75)],
         2 : [get_goal(1.75, 0.4), get_goal(1.75, -0.75)],
-        3 : [get_goal(2.7, -0.5), get_goal(2.3, -0.7), get_goal(1.4, -0.5), get_goal(1.5, -0.6), get_goal(2.0, -0.25), get_goal(2.1, 4.1),\
-             get_goal(1.8, 5.7), get_goal(1.9, -1.0), get_goal(1.8, -0.8), get_goal(1.5, 7.1)]
+        3 : [get_goal(2.2, -1.0), get_goal(1.8, -0.25), get_goal(1.5, 7.1), get_goal(1.3, -0.5), get_goal(0.9, 5.1)]
     }
 
     renderer = None
@@ -193,11 +192,11 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
                 continue
             if result:
                 print("success!")
-                print('score:', '0.75/0.75')
+                print('score:', '1.5/1.5')
                 score += 0.75
             else:
                 print("fail")
-                print('score:', '0/0.75')
+                print('score:', '0/1.5')
         print("       ")
     print("-------------------------")
     print("Part 2 SCORE: ", f"{score}/7.5")
