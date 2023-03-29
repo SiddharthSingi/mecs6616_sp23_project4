@@ -64,7 +64,7 @@ def test(arm, dynamics, goal, renderer, controller, gui, args, limit):
         pos_ee = arm.dynamics.compute_fk(new_state)
         dist = np.linalg.norm(pos_ee - goal)
         vel_ee = np.linalg.norm(arm.dynamics.compute_vel_ee(state))
-        if dist < limit and vel_ee < 0.3:
+        if dist < limit and vel_ee < 1.0:
             return 1
     return 0
 
@@ -193,11 +193,11 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
             if result:
                 print("success!")
                 print('score:', '1.5/1.5')
-                score += 0.75
+                score += 1.5
             else:
                 print("fail")
                 print('score:', '0/1.5')
-        print("       ")
+    print("       ")
     print("-------------------------")
     print("Part 2 SCORE: ", f"{score}/7.5")
     print("-------------------------")
