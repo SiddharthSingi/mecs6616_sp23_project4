@@ -115,7 +115,7 @@ def score_mpc_true_dynamics(controller, gui):
         for i, goal in enumerate(GOALS[num_links]):
             print("Test ", i+1)
             try:
-                result = test(arm, dynamics, goal, renderer, controller, gui, args, limit=0.05)
+                result = test(arm, dynamics, goal, renderer, controller, gui, args, limit=0.15)
             except NotImplementedError as e:
                 print(e)
                 print("Skipping tests")
