@@ -130,7 +130,7 @@ def score_mpc_true_dynamics(controller, gui):
                 print("Skipping tests")
                 continue
             if result:
-                print(f'success!\n Goal: {GOALS[2][i]}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
+                print(f'success!\n Goal: {GOALS[num_links][i].reshape(-1)}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
                 if i == 0:
                     print('score:', '1.5/1.5')
                     score += 1.5
@@ -138,7 +138,7 @@ def score_mpc_true_dynamics(controller, gui):
                     print('score:', '1.0/1.0')
                     score += 1.0
             else:
-                print(f'fail\n Goal: {GOALS[2][i]}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
+                print(f'fail\n Goal: {GOALS[num_links][i].reshape(-1)}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
                 if i==0:
                   print('score:', '0/1.5')
                 else:
@@ -201,11 +201,11 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
                 print(e)
                 continue
             if result:
-                print(f'success!\n Goal: {GOALS[2][i]}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
+                print(f'success!\n Goal: {GOALS[num_links][i].reshape(-1)}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
                 print('score:', '0.5/0.5')
                 score += 0.5
             else:
-                print(f'fail\n Goal: {GOALS[2][i]}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
+                print(f'fail\n Goal: {GOALS[num_links][i].reshape(-1)}, Final position: {pos_ee.reshape(-1)}, Final velocity: {vel_ee.reshape(-1)}')
                 print('score:', '0/0.5')
     print("       ")
     print("-------------------------")
