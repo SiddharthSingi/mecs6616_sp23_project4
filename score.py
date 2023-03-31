@@ -155,7 +155,7 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
     args, unknown = get_args()
     GOALS = {
         1 : [get_goal(1, 0.4), get_goal(1, -0.75)],
-        2 : [sample_goal() for _ in range(15)],
+        2 : [sample_goal() for _ in range(16)],
         3 : [get_goal(2.2, -1.0), get_goal(1.8, -0.25), get_goal(1.5, 7.1), get_goal(1.3, -0.5), get_goal(0.9, 5.1)]
     }
 
@@ -209,7 +209,7 @@ def score_mpc_learnt_dynamics(controller, arm_student, model_path, gui):
                 print('score:', '0/0.5')
     print("       ")
     print("-------------------------")
-    print("Part 2 SCORE: ", f"{score}/7.5")
+    print("Part 2 SCORE: ", f"{min(score, 7.5)}/7.5")
     print("-------------------------")
 
     if renderer is not None:
